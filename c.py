@@ -4,7 +4,7 @@ import numpy as np
 w1 = random.uniform(0,1)
 w2 = random.uniform(0,1)
 b = random.uniform(0,1)
-print w1,w2,b
+print (w1,w2,b)
 x = [[0,0],[0,1],[1,0],[1,1]]
 y = [0,1,1,0]
 pred = [0,0,0,0]
@@ -31,6 +31,9 @@ def change(pred,y,x) :
     dc_db = 0
     global w1,w2,b
     for j in range(100000) :
+        dc_dw1 = 0
+        dc_dw2 = 0
+        dc_db = 0
         for i in range(4) :
             dc_dw1+=   ( pred[i] - y[i] ) * x[i][0]
             dc_dw2+=   ( pred[i] - y[i] ) * x[i][1]
@@ -38,10 +41,13 @@ def change(pred,y,x) :
         w1 = w1 - 0.1*dc_dw1
         w2 = w2 - 0.1*dc_dw2
         b = b - 0.1*dc_db
-        print w1,w2,b
+        #print (w1,w2,b)
         prediction(w1,w2,b)
+        #print("#############", cost(pred))
+        
 
 #prediction(w1,w2)
 #print (cost(pred))
 change(pred,y,x)
+print(w1, w2, b)
 #print (cost(pred))
